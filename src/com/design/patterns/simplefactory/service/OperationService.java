@@ -2,7 +2,7 @@ package com.design.patterns.simplefactory.service;
 
 /**
  * Title: 运算类接口<br>
- * Description: OperationService<br>
+ * Description: StrategyService<br>
  * Company:韦博英语在线教育部</br>
  * CreateDate:2019年06月17日 11:52
  *
