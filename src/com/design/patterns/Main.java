@@ -1,24 +1,52 @@
 package com.design.patterns;
 
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
+import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryAServiceImpl;
+import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryBServiceImpl;
 import com.design.patterns.simplefactory.OperationFactory;
 import com.design.patterns.simplefactory.service.OperationService;
 import com.design.patterns.strategy.StrategyFactory;
 import com.design.patterns.strategy.service.serviceImpl.ConcreteStrategyA;
 import com.design.patterns.strategy.service.serviceImpl.ConcreteStrategyB;
 
-import java.util.Scanner;
-import java.util.regex.Pattern;
-
 public class Main {
 
   public static void main(String[] args) {
+    System.out.println("----------------- 工厂方法模式实现样例 start -----------------");
+    factoryMethodPatternsTest();
+    System.out.println("----------------- 工厂方法模式实现样例 end -----------------\n");
+
     System.out.println("----------------- 使用简单工厂模式实现的一个简单计算器 start -----------------");
-    simplefactoryPatternsTest();
-    System.out.println("----------------- 使用简单工厂模式实现的一个简单计算器 end -----------------");
+    simpleFactoryPatternsTest();
+    System.out.println("----------------- 使用简单工厂模式实现的一个简单计算器 end -----------------\n");
 
     System.out.println("----------------- 策略模式实现样例 start -----------------");
     strategyPatternsTest();
-    System.out.println("----------------- 策略模式实现样例 end -----------------");
+    System.out.println("----------------- 策略模式实现样例 end -----------------\n");
+  }
+
+  /**
+   * Title: 工厂方法模式测试<br>
+   * Description: factoryMethodPatternsTest<br>
+   * CreateDate: 2019/6/28 18:05<br>
+   *
+   * @category 工厂方法模式测试
+   * @author jackie.scl
+   * @return void
+   * @exception Exception
+   */
+  public static void factoryMethodPatternsTest() {
+    ConcreteFactoryAServiceImpl concreteFactoryAServiceImpl = new ConcreteFactoryAServiceImpl();
+    System.out.println("具体工厂A测试 start");
+    concreteFactoryAServiceImpl.newProduct().productInfo();
+    System.out.println("具体工厂A测试 end");
+
+    ConcreteFactoryBServiceImpl concreteFactoryBServiceImpl = new ConcreteFactoryBServiceImpl();
+    System.out.println("具体工厂B测试 start");
+    concreteFactoryBServiceImpl.newProduct().productInfo();
+    System.out.println("具体工厂B测试 end");
   }
 
   /**
@@ -45,7 +73,7 @@ public class Main {
 
   /**
    * Title: 简单工厂模式测试<br>
-   * Description: simplefactoryPatternsTest<br>
+   * Description: simpleFactoryPatternsTest<br>
    * CreateDate: 2019/6/17 18:43<br>
    *
    * @return void
@@ -53,7 +81,7 @@ public class Main {
    * @category 简单工厂模式测试
    * @author jackie.scl
    */
-  public static void simplefactoryPatternsTest() {
+  public static void simpleFactoryPatternsTest() {
     System.out.println("请输入第一个数字:");
     Scanner scanner = new Scanner(System.in);
     String num1 = scanner.nextLine();
