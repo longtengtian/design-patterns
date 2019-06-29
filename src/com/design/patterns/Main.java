@@ -1,19 +1,26 @@
 package com.design.patterns;
 
-import java.util.Scanner;
-import java.util.regex.Pattern;
-
 import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryAServiceImpl;
 import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryBServiceImpl;
 import com.design.patterns.simplefactory.OperationFactory;
 import com.design.patterns.simplefactory.service.OperationService;
+import com.design.patterns.singleton.HungrySingleton;
+import com.design.patterns.singleton.LazySingleton;
+import com.design.patterns.singleton.Singleton;
 import com.design.patterns.strategy.StrategyFactory;
 import com.design.patterns.strategy.service.serviceImpl.ConcreteStrategyA;
 import com.design.patterns.strategy.service.serviceImpl.ConcreteStrategyB;
 
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
 public class Main {
 
   public static void main(String[] args) {
+    System.out.println("----------------- 单例模式实现样例 start -----------------");
+    singletonPatternsTest();
+    System.out.println("----------------- 单例模式实现样例 end -----------------\n");
+
     System.out.println("----------------- 工厂方法模式实现样例 start -----------------");
     factoryMethodPatternsTest();
     System.out.println("----------------- 工厂方法模式实现样例 end -----------------\n");
@@ -25,6 +32,48 @@ public class Main {
     System.out.println("----------------- 策略模式实现样例 start -----------------");
     strategyPatternsTest();
     System.out.println("----------------- 策略模式实现样例 end -----------------\n");
+  }
+
+  /**
+   * Title: 单例模式测试<br>
+   * Description: singletonPatternsTest<br>
+   * CreateDate: 2019/6/29 11:56<br>
+   *
+   * @return void
+   * @throws Exception
+   * @category
+   * @author jackie.scl
+   */
+  public static void singletonPatternsTest() {
+    System.out.println("懒汉式单例测试 start");
+    LazySingleton lazySingleton1 = LazySingleton.getInstance();
+    LazySingleton lazySingleton2 = LazySingleton.getInstance();
+    if (lazySingleton1 == lazySingleton2) {
+      System.out.println("创建的是同一个对象！");
+    } else {
+      System.out.println("创建的不是同一个对象！");
+    }
+    System.out.println("懒汉式单例测试 end");
+
+    System.out.println("饿汉式单例测试 start");
+    HungrySingleton hungrySingleton1 = HungrySingleton.getInstance();
+    HungrySingleton hungrySingleton2 = HungrySingleton.getInstance();
+    if (hungrySingleton1 == hungrySingleton2) {
+      System.out.println("创建的是同一个对象！");
+    } else {
+      System.out.println("创建的不是同一个对象！");
+    }
+    System.out.println("饿汉式单例测试 end");
+
+    System.out.println("静态内部类生成单例测试 start");
+    Singleton singleton1 = Singleton.getInstance();
+    Singleton singleton2 = Singleton.getInstance();
+    if (singleton1 == singleton2) {
+      System.out.println("创建的是同一个对象！");
+    } else {
+      System.out.println("创建的不是同一个对象！");
+    }
+    System.out.println("静态内部类生成单例测试 end");
   }
 
   /**
