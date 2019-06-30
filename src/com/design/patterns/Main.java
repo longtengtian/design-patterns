@@ -2,6 +2,7 @@ package com.design.patterns;
 
 import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryAServiceImpl;
 import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryBServiceImpl;
+import com.design.patterns.proxy.service.serviceImpl.ProxySubjectServiceImpl;
 import com.design.patterns.simplefactory.OperationFactory;
 import com.design.patterns.simplefactory.service.OperationService;
 import com.design.patterns.singleton.HungrySingleton;
@@ -25,9 +26,13 @@ public class Main {
     factoryMethodPatternsTest();
     System.out.println("----------------- 工厂方法模式实现样例 end -----------------\n");
 
-    System.out.println("----------------- 使用简单工厂模式实现的一个简单计算器 start -----------------");
-    simpleFactoryPatternsTest();
-    System.out.println("----------------- 使用简单工厂模式实现的一个简单计算器 end -----------------\n");
+//    System.out.println("----------------- 使用简单工厂模式实现的一个简单计算器 start -----------------");
+//    simpleFactoryPatternsTest();
+//    System.out.println("----------------- 使用简单工厂模式实现的一个简单计算器 end -----------------\n");
+
+    System.out.println("----------------- 代理模式实现样例 start -----------------");
+    proxyPatternsTest();
+    System.out.println("----------------- 代理模式实现样例 end -----------------\n");
 
     System.out.println("----------------- 策略模式实现样例 start -----------------");
     strategyPatternsTest();
@@ -96,6 +101,21 @@ public class Main {
     System.out.println("具体工厂B测试 start");
     concreteFactoryBServiceImpl.newProduct().productInfo();
     System.out.println("具体工厂B测试 end");
+  }
+
+  /**
+   * Title: 代理模式测试<br>
+   * Description: proxyPatternsTest<br>
+   * CreateDate: 2019/6/30 18:07<br>
+   *
+   * @return void
+   * @throws Exception
+   * @category
+   * @author jackie.scl
+   */
+  public static void proxyPatternsTest() {
+    ProxySubjectServiceImpl proxy = new ProxySubjectServiceImpl();
+    proxy.request();
   }
 
   /**
