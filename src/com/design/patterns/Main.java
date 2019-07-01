@@ -1,8 +1,15 @@
 package com.design.patterns;
 
+import java.lang.reflect.InvocationHandler;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
 import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryAServiceImpl;
 import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryBServiceImpl;
+import com.design.patterns.proxy.DynamicProxy;
+import com.design.patterns.proxy.service.SubjectService;
 import com.design.patterns.proxy.service.serviceImpl.ProxySubjectServiceImpl;
+import com.design.patterns.proxy.service.serviceImpl.RealSubjectServiceImpl;
 import com.design.patterns.simplefactory.OperationFactory;
 import com.design.patterns.simplefactory.service.OperationService;
 import com.design.patterns.singleton.HungrySingleton;
@@ -11,9 +18,6 @@ import com.design.patterns.singleton.Singleton;
 import com.design.patterns.strategy.StrategyFactory;
 import com.design.patterns.strategy.service.serviceImpl.ConcreteStrategyA;
 import com.design.patterns.strategy.service.serviceImpl.ConcreteStrategyB;
-
-import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class Main {
 
@@ -114,8 +118,15 @@ public class Main {
    * @author jackie.scl
    */
   public static void proxyPatternsTest() {
-    ProxySubjectServiceImpl proxy = new ProxySubjectServiceImpl();
-    proxy.request();
+    SubjectService realSubjectService = new RealSubjectServiceImpl();
+    InvocationHandler handler = new ProxySubjectServiceImpl(realSubjectService);
+
+    ClassLoader classLoader = realSubjectService.getClass().getClassLoader();
+    Class<?>[] interfaces = realSubjectService.getClass().getInterfaces();
+    SubjectService proxySubectService = DynamicProxy.newProxyInstance(classLoader, interfaces,
+        handler);
+    // 通过代理访问真实对象方法
+    proxySubectService.request();
   }
 
   /**
