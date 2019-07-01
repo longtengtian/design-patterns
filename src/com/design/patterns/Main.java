@@ -4,6 +4,11 @@ import java.lang.reflect.InvocationHandler;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import com.design.patterns.adapter.service.TwoWayAdapteeService;
+import com.design.patterns.adapter.service.TwoWayTargetService;
+import com.design.patterns.adapter.service.serviceImpl.AdapteeRealizeServiceImpl;
+import com.design.patterns.adapter.service.serviceImpl.TargetRealizeServiceImpl;
+import com.design.patterns.adapter.service.serviceImpl.TwoWayAdapterServiceImpl;
 import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryAServiceImpl;
 import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryBServiceImpl;
 import com.design.patterns.proxy.DynamicProxy;
@@ -37,6 +42,10 @@ public class Main {
     System.out.println("----------------- 代理模式实现样例 start -----------------");
     proxyPatternsTest();
     System.out.println("----------------- 代理模式实现样例 end -----------------\n");
+
+    System.out.println("----------------- 适配器模式实现样例 start -----------------");
+    adapterPatternsTest();
+    System.out.println("----------------- 适配器模式实现样例 end -----------------\n");
 
     System.out.println("----------------- 策略模式实现样例 start -----------------");
     strategyPatternsTest();
@@ -127,6 +136,29 @@ public class Main {
         handler);
     // 通过代理访问真实对象方法
     proxySubectService.request();
+  }
+
+  /**
+   * Title: 适配器模式测试<br>
+   * Description: adapterPatternsTest<br>
+   * CreateDate: 2019/7/1 19:35<br>
+   *
+   * @category 适配器模式测试
+   * @author jackie.scl
+   * @return void
+   * @exception Exception
+   */
+  public static void adapterPatternsTest() {
+    System.out.println("目标通过双向适配器访问适配者 start");
+    TwoWayAdapteeService adapteeService = new AdapteeRealizeServiceImpl();
+    TwoWayTargetService targetService = new TwoWayAdapterServiceImpl(adapteeService);
+    targetService.request();
+    System.out.println("目标通过双向适配器访问适配者 end");
+    System.out.println("适配者通过双向适配器访问目标 start");
+    targetService = new TargetRealizeServiceImpl();
+    adapteeService = new TwoWayAdapterServiceImpl(targetService);
+    adapteeService.specificRequest();
+    System.out.println("适配者通过双向适配器访问目标 end");
   }
 
   /**
