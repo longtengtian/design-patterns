@@ -9,6 +9,10 @@ import com.design.patterns.adapter.service.TwoWayTargetService;
 import com.design.patterns.adapter.service.serviceImpl.AdapteeRealizeServiceImpl;
 import com.design.patterns.adapter.service.serviceImpl.TargetRealizeServiceImpl;
 import com.design.patterns.adapter.service.serviceImpl.TwoWayAdapterServiceImpl;
+import com.design.patterns.decorator.service.ComponentService;
+import com.design.patterns.decorator.service.serviceImpl.ConcreteComponentServiceImpl;
+import com.design.patterns.decorator.service.serviceImpl.ConcreteDecoratorAServiceImpl;
+import com.design.patterns.decorator.service.serviceImpl.ConcreteDecoratorBServiceImpl;
 import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryAServiceImpl;
 import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryBServiceImpl;
 import com.design.patterns.proxy.DynamicProxy;
@@ -47,6 +51,10 @@ public class Main {
     adapterPatternsTest();
     System.out.println("----------------- 适配器模式实现样例 end -----------------\n");
 
+    System.out.println("----------------- 装饰模式实现样例 start -----------------");
+    decoratorPatternsTest();
+    System.out.println("----------------- 装饰模式实现样例 end -----------------\n");
+
     System.out.println("----------------- 策略模式实现样例 start -----------------");
     strategyPatternsTest();
     System.out.println("----------------- 策略模式实现样例 end -----------------\n");
@@ -71,7 +79,7 @@ public class Main {
     } else {
       System.out.println("创建的不是同一个对象！");
     }
-    System.out.println("懒汉式单例测试 end");
+    System.out.println("懒汉式单例测试 end\n");
 
     System.out.println("饿汉式单例测试 start");
     HungrySingleton hungrySingleton1 = HungrySingleton.getInstance();
@@ -81,7 +89,7 @@ public class Main {
     } else {
       System.out.println("创建的不是同一个对象！");
     }
-    System.out.println("饿汉式单例测试 end");
+    System.out.println("饿汉式单例测试 end\n");
 
     System.out.println("静态内部类生成单例测试 start");
     Singleton singleton1 = Singleton.getInstance();
@@ -108,7 +116,7 @@ public class Main {
     ConcreteFactoryAServiceImpl concreteFactoryAServiceImpl = new ConcreteFactoryAServiceImpl();
     System.out.println("具体工厂A测试 start");
     concreteFactoryAServiceImpl.newProduct().productInfo();
-    System.out.println("具体工厂A测试 end");
+    System.out.println("具体工厂A测试 end\n");
 
     ConcreteFactoryBServiceImpl concreteFactoryBServiceImpl = new ConcreteFactoryBServiceImpl();
     System.out.println("具体工厂B测试 start");
@@ -153,12 +161,39 @@ public class Main {
     TwoWayAdapteeService adapteeService = new AdapteeRealizeServiceImpl();
     TwoWayTargetService targetService = new TwoWayAdapterServiceImpl(adapteeService);
     targetService.request();
-    System.out.println("目标通过双向适配器访问适配者 end");
+    System.out.println("目标通过双向适配器访问适配者 end\n");
     System.out.println("适配者通过双向适配器访问目标 start");
     targetService = new TargetRealizeServiceImpl();
     adapteeService = new TwoWayAdapterServiceImpl(targetService);
     adapteeService.specificRequest();
     System.out.println("适配者通过双向适配器访问目标 end");
+  }
+
+  /**
+   * Title: 装饰模式测试<br>
+   * Description: decoratorPatternsTest<br>
+   * CreateDate: 2019/7/2 18:49<br>
+   *
+   * @category 装饰模式测试
+   * @author jackie.scl
+   * @return void
+   * @exception Exception
+   */
+  public static void decoratorPatternsTest() {
+    System.out.println("具体构件实现方法调用 start");
+    ComponentService componentService = new ConcreteComponentServiceImpl();
+    componentService.operation();
+    System.out.println("具体构件实现方法调用 end\n");
+
+    System.out.println("具体装饰A实现方法调用 start");
+    ComponentService decoratorAService = new ConcreteDecoratorAServiceImpl(componentService);
+    decoratorAService.operation();
+    System.out.println("具体装饰A实现方法调用 end\n");
+
+    System.out.println("具体装饰B实现方法调用 start");
+    ComponentService decoratorBService = new ConcreteDecoratorBServiceImpl(componentService);
+    decoratorAService.operation();
+    System.out.println("具体装饰B实现方法调用 end");
   }
 
   /**
