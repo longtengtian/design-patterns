@@ -18,9 +18,14 @@ public class ConcreteDecoratorBServiceImpl extends DecoratorServiceImpl {
   public void operation() {
     super.operation();
     addedFunction();
+    specialOpration();
   }
 
   public void addedFunction() {
-    System.out.println("为具体装饰对象B增加额外的功能addedFunction()");
+    System.out.println("执行具体装饰对象B增加额外的功能addedFunction()");
+  }
+
+  public void specialOpration() {
+    System.out.println("执行具体装饰对象B特有的功能specialOpration()");
   }
 }

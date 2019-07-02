@@ -192,7 +192,7 @@ public class Main {
 
     System.out.println("具体装饰B实现方法调用 start");
     ComponentService decoratorBService = new ConcreteDecoratorBServiceImpl(componentService);
-    decoratorAService.operation();
+    decoratorBService.operation();
     System.out.println("具体装饰B实现方法调用 end");
   }
 

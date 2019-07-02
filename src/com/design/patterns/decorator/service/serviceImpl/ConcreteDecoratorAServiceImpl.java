@@ -21,6 +21,6 @@ public class ConcreteDecoratorAServiceImpl extends DecoratorServiceImpl {
   }
 
   public void addedFunction() {
-    System.out.println("为具体装饰对象A增加额外的功能addedFunction()");
+    System.out.println("执行具体装饰对象A增加额外的功能addedFunction()");
   }
 }
