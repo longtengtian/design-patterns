@@ -1,9 +1,5 @@
 package com.design.patterns;
 
-import java.lang.reflect.InvocationHandler;
-import java.util.Scanner;
-import java.util.regex.Pattern;
-
 import com.design.patterns.adapter.service.TwoWayAdapteeService;
 import com.design.patterns.adapter.service.TwoWayTargetService;
 import com.design.patterns.adapter.service.serviceImpl.AdapteeRealizeServiceImpl;
@@ -27,6 +23,12 @@ import com.design.patterns.singleton.Singleton;
 import com.design.patterns.strategy.StrategyFactory;
 import com.design.patterns.strategy.service.serviceImpl.ConcreteStrategyA;
 import com.design.patterns.strategy.service.serviceImpl.ConcreteStrategyB;
+import com.design.patterns.templatemethod.HookAbstractClass;
+import com.design.patterns.templatemethod.HookConcreteClass;
+
+import java.lang.reflect.InvocationHandler;
+import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Main {
 
@@ -54,6 +56,10 @@ public class Main {
     System.out.println("----------------- 装饰模式实现样例 start -----------------");
     decoratorPatternsTest();
     System.out.println("----------------- 装饰模式实现样例 end -----------------\n");
+
+    System.out.println("----------------- 模板方法模式实现样例 start -----------------");
+    templateMethodPatternsTest();
+    System.out.println("----------------- 模板方法模式实现样例 end -----------------\n");
 
     System.out.println("----------------- 策略模式实现样例 start -----------------");
     strategyPatternsTest();
@@ -194,6 +200,22 @@ public class Main {
     ComponentService decoratorBService = new ConcreteDecoratorBServiceImpl(componentService);
     decoratorBService.operation();
     System.out.println("具体装饰B实现方法调用 end");
+  }
+
+  /**
+   * Title: 模板方法模式测试<br>
+   * Description: templateMethodPatternsTest<br>
+   * CreateDate: 2019/7/3 22:45<br>
+   *
+   * @return void
+   * @throws Exception
+   * @category
+   * @author jackie.scl
+   */
+  public static void templateMethodPatternsTest() {
+    HookAbstractClass hookAbstractClass = new HookConcreteClass();
+    // 模板方法
+    hookAbstractClass.templateMethod();
   }
 
   /**
