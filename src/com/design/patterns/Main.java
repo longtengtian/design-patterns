@@ -1,5 +1,9 @@
 package com.design.patterns;
 
+import java.lang.reflect.InvocationHandler;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
 import com.design.patterns.adapter.service.TwoWayAdapteeService;
 import com.design.patterns.adapter.service.TwoWayTargetService;
 import com.design.patterns.adapter.service.serviceImpl.AdapteeRealizeServiceImpl;
@@ -11,6 +15,11 @@ import com.design.patterns.decorator.service.serviceImpl.ConcreteDecoratorAServi
 import com.design.patterns.decorator.service.serviceImpl.ConcreteDecoratorBServiceImpl;
 import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryAServiceImpl;
 import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryBServiceImpl;
+import com.design.patterns.observer.service.Observer;
+import com.design.patterns.observer.service.Subject;
+import com.design.patterns.observer.service.serviceImpl.ConcreteObserverA;
+import com.design.patterns.observer.service.serviceImpl.ConcreteObserverB;
+import com.design.patterns.observer.service.serviceImpl.ConcreteSubject;
 import com.design.patterns.proxy.DynamicProxy;
 import com.design.patterns.proxy.service.SubjectService;
 import com.design.patterns.proxy.service.serviceImpl.ProxySubjectServiceImpl;
@@ -25,10 +34,6 @@ import com.design.patterns.strategy.service.serviceImpl.ConcreteStrategyA;
 import com.design.patterns.strategy.service.serviceImpl.ConcreteStrategyB;
 import com.design.patterns.templatemethod.HookAbstractClass;
 import com.design.patterns.templatemethod.HookConcreteClass;
-
-import java.lang.reflect.InvocationHandler;
-import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class Main {
 
@@ -64,6 +69,10 @@ public class Main {
     System.out.println("----------------- 策略模式实现样例 start -----------------");
     strategyPatternsTest();
     System.out.println("----------------- 策略模式实现样例 end -----------------\n");
+
+    System.out.println("----------------- 观察者模式实现样例 start -----------------");
+    observerPatternsTest();
+    System.out.println("----------------- 观察者模式实现样例 end -----------------\n");
   }
 
   /**
@@ -238,6 +247,28 @@ public class Main {
     strategyFactory.strategyMethod("concreteStrategyB");
     // 调用不存在策略
     // strategyFactory.strategyMethod("concreteStrategy");
+  }
+
+  /**
+   * Title: 观察者模板测试<br>
+   * Description: observerPatternsTest<br>
+   * CreateDate: 2019/7/4 19:13<br>
+   *
+   * @category @author jackie.scl
+   * @return void
+   * @exception Exception
+   */
+  public static void observerPatternsTest() {
+    // 目标获取
+    Subject subject = new ConcreteSubject();
+    // 观察者获取
+    Observer observerA = new ConcreteObserverA();
+    Observer observerB = new ConcreteObserverB();
+    // 观察者新增
+    subject.addObserver(observerA);
+    subject.addObserver(observerB);
+    // 通知目标添加了的观察者
+    subject.notifyObserver();
   }
 
   /**
