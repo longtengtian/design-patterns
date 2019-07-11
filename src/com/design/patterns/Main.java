@@ -20,6 +20,7 @@ import com.design.patterns.observer.service.Subject;
 import com.design.patterns.observer.service.serviceImpl.ConcreteObserverA;
 import com.design.patterns.observer.service.serviceImpl.ConcreteObserverB;
 import com.design.patterns.observer.service.serviceImpl.ConcreteSubject;
+import com.design.patterns.prototype.ProtoTypeCitation;
 import com.design.patterns.proxy.DynamicProxy;
 import com.design.patterns.proxy.service.SubjectService;
 import com.design.patterns.proxy.service.serviceImpl.ProxySubjectServiceImpl;
@@ -41,6 +42,10 @@ public class Main {
     System.out.println("----------------- 单例模式实现样例 start -----------------");
     singletonPatternsTest();
     System.out.println("----------------- 单例模式实现样例 end -----------------\n");
+
+    System.out.println("----------------- 原型模式实现样例 start -----------------");
+    protoTypePatternsTest();
+    System.out.println("----------------- 原型模式实现样例 end -----------------\n");
 
     System.out.println("----------------- 工厂方法模式实现样例 start -----------------");
     factoryMethodPatternsTest();
@@ -115,6 +120,31 @@ public class Main {
       System.out.println("创建的不是同一个对象！");
     }
     System.out.println("静态内部类生成单例测试 end");
+  }
+
+  /**
+   * Title: 原型模式测试<br>
+   * Description: protoTypePatternsTest<br>
+   * CreateDate: 2019/7/11 18:44<br>
+   *
+   * @category @author jackie.scl
+   * @return void
+   * @exception Exception
+   */
+  public static void protoTypePatternsTest() {
+    ProtoTypeCitation mingCitation = new ProtoTypeCitation("小明",
+        "在2019学年第一学期中表现突出，被评为三好学生", "启明学院");
+    mingCitation.display();
+    try {
+      ProtoTypeCitation redCitation = (ProtoTypeCitation) mingCitation.clone();
+      redCitation.setName("小红");
+      redCitation.setInfo("在2019学年第一学期在班级管理中表现突出,被评为优秀班干部");
+      redCitation.setCollege("红学书院");
+      redCitation.display();
+    } catch (CloneNotSupportedException e) {
+      System.out.println("复制失败");
+    }
+
   }
 
   /**
