@@ -4,6 +4,10 @@ import java.lang.reflect.InvocationHandler;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import com.design.patterns.abstractfactory.factory.ConcreteFactoryA;
+import com.design.patterns.abstractfactory.factory.ConcreteFactoryB;
+import com.design.patterns.abstractfactory.product.AbstractProductOne;
+import com.design.patterns.abstractfactory.product.AbstractProductTwo;
 import com.design.patterns.adapter.service.TwoWayAdapteeService;
 import com.design.patterns.adapter.service.TwoWayTargetService;
 import com.design.patterns.adapter.service.serviceImpl.AdapteeRealizeServiceImpl;
@@ -50,6 +54,10 @@ public class Main {
     System.out.println("----------------- 工厂方法模式实现样例 start -----------------");
     factoryMethodPatternsTest();
     System.out.println("----------------- 工厂方法模式实现样例 end -----------------\n");
+
+    System.out.println("----------------- 抽象工厂模式实现样例 start -----------------");
+    abstractFactoryPatternsTest();
+    System.out.println("----------------- 抽象工厂模式实现样例 end -----------------\n");
 
 //    System.out.println("----------------- 使用简单工厂模式实现的一个简单计算器 start -----------------");
 //    simpleFactoryPatternsTest();
@@ -167,6 +175,23 @@ public class Main {
     System.out.println("具体工厂B测试 start");
     concreteFactoryBServiceImpl.newProduct().productInfo();
     System.out.println("具体工厂B测试 end");
+  }
+
+  /**
+   * Title: 抽象工厂模式测试<br>
+   * Description: abstractFactoryPatternsTest<br>
+   * CreateDate: 2019/7/11 19:10<br>
+   *
+   * @category @author jackie.scl
+   * @return void
+   * @exception Exception
+   */
+  public static void abstractFactoryPatternsTest() {
+    AbstractProductOne abstractProductOne = new ConcreteFactoryA().newProductA();
+    abstractProductOne.show();
+
+    AbstractProductTwo abstractProductB = new ConcreteFactoryB().newProductB();
+    abstractProductB.test();
   }
 
   /**
