@@ -1,13 +1,8 @@
 package com.design.patterns;
 
-import java.lang.reflect.InvocationHandler;
-import java.util.Scanner;
-import java.util.regex.Pattern;
-
+import com.design.patterns.abstractfactory.factory.AbstractFactory;
 import com.design.patterns.abstractfactory.factory.ConcreteFactoryA;
 import com.design.patterns.abstractfactory.factory.ConcreteFactoryB;
-import com.design.patterns.abstractfactory.product.AbstractProductOne;
-import com.design.patterns.abstractfactory.product.AbstractProductTwo;
 import com.design.patterns.adapter.service.TwoWayAdapteeService;
 import com.design.patterns.adapter.service.TwoWayTargetService;
 import com.design.patterns.adapter.service.serviceImpl.AdapteeRealizeServiceImpl;
@@ -39,6 +34,10 @@ import com.design.patterns.strategy.service.serviceImpl.ConcreteStrategyA;
 import com.design.patterns.strategy.service.serviceImpl.ConcreteStrategyB;
 import com.design.patterns.templatemethod.HookAbstractClass;
 import com.design.patterns.templatemethod.HookConcreteClass;
+
+import java.lang.reflect.InvocationHandler;
+import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Main {
 
@@ -187,11 +186,17 @@ public class Main {
    * @exception Exception
    */
   public static void abstractFactoryPatternsTest() {
-    AbstractProductOne abstractProductOne = new ConcreteFactoryA().newProductA();
-    abstractProductOne.show();
+    System.out.println("具体工厂A产品 start");
+    AbstractFactory concreteFactoryA = new ConcreteFactoryA();
+    concreteFactoryA.newProductA().show();
+    concreteFactoryA.newProductB().test();
+    System.out.println("具体工厂A产品 end\n");
 
-    AbstractProductTwo abstractProductB = new ConcreteFactoryB().newProductB();
-    abstractProductB.test();
+    System.out.println("具体工厂B产品 start");
+    AbstractFactory concreteFactoryB = new ConcreteFactoryB();
+    concreteFactoryB.newProductA().show();
+    concreteFactoryB.newProductB().test();
+    System.out.println("具体工厂B产品 end");
   }
 
   /**
