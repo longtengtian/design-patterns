@@ -26,6 +26,7 @@ import com.design.patterns.decorator.service.ComponentService;
 import com.design.patterns.decorator.service.serviceImpl.ConcreteComponentServiceImpl;
 import com.design.patterns.decorator.service.serviceImpl.ConcreteDecoratorAServiceImpl;
 import com.design.patterns.decorator.service.serviceImpl.ConcreteDecoratorBServiceImpl;
+import com.design.patterns.facade.facade.Facade;
 import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryAServiceImpl;
 import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryBServiceImpl;
 import com.design.patterns.observer.service.Observer;
@@ -93,6 +94,10 @@ public class Main {
     System.out.println("----------------- 装饰模式实现样例 start -----------------");
     decoratorPatternsTest();
     System.out.println("----------------- 装饰模式实现样例 end -----------------\n");
+
+    System.out.println("----------------- 外观模式实现样例 start -----------------");
+    facadePatternsTest();
+    System.out.println("----------------- 外观模式实现样例 end -----------------\n");
 
     System.out.println("----------------- 模板方法模式实现样例 start -----------------");
     templateMethodPatternsTest();
@@ -335,6 +340,20 @@ public class Main {
     ComponentService decoratorBService = new ConcreteDecoratorBServiceImpl(componentService);
     decoratorBService.operation();
     System.out.println("具体装饰B实现方法调用 end");
+  }
+
+  /**
+   * Title: 外观模式测试<br>
+   * Description: facadePatternsTest<br>
+   * CreateDate: 2019/7/15 16:37<br>
+   *
+   * @category @author jackie.scl
+   * @return void
+   * @exception Exception
+   */
+  public static void facadePatternsTest() {
+    Facade facade = new Facade();
+    facade.method();
   }
 
   /**
