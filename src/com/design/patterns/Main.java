@@ -1,9 +1,5 @@
 package com.design.patterns;
 
-import java.lang.reflect.InvocationHandler;
-import java.util.Scanner;
-import java.util.regex.Pattern;
-
 import com.design.patterns.abstractfactory.factory.AbstractFactory;
 import com.design.patterns.abstractfactory.factory.ConcreteFactoryA;
 import com.design.patterns.abstractfactory.factory.ConcreteFactoryB;
@@ -29,6 +25,9 @@ import com.design.patterns.decorator.service.serviceImpl.ConcreteDecoratorBServi
 import com.design.patterns.facade.facade.Facade;
 import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryAServiceImpl;
 import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryBServiceImpl;
+import com.design.patterns.flyweight.UnsharedConcreteFlyweight;
+import com.design.patterns.flyweight.abstraction.Flyweight;
+import com.design.patterns.flyweight.factory.FlyweightFactory;
 import com.design.patterns.observer.service.Observer;
 import com.design.patterns.observer.service.Subject;
 import com.design.patterns.observer.service.serviceImpl.ConcreteObserverA;
@@ -49,6 +48,10 @@ import com.design.patterns.strategy.service.serviceImpl.ConcreteStrategyA;
 import com.design.patterns.strategy.service.serviceImpl.ConcreteStrategyB;
 import com.design.patterns.templatemethod.HookAbstractClass;
 import com.design.patterns.templatemethod.HookConcreteClass;
+
+import java.lang.reflect.InvocationHandler;
+import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Main {
 
@@ -98,6 +101,10 @@ public class Main {
     System.out.println("----------------- 外观模式实现样例 start -----------------");
     facadePatternsTest();
     System.out.println("----------------- 外观模式实现样例 end -----------------\n");
+
+    System.out.println("----------------- 享元模式实现样例 start -----------------");
+    flyweightPatternsTest();
+    System.out.println("----------------- 享元模式实现样例 end -----------------\n");
 
     System.out.println("----------------- 模板方法模式实现样例 start -----------------");
     templateMethodPatternsTest();
@@ -354,6 +361,36 @@ public class Main {
   public static void facadePatternsTest() {
     Facade facade = new Facade();
     facade.method();
+  }
+
+  /**
+   * Title: 享元模式测试<br>
+   * Description: flyweightPatternsTest<br>
+   * CreateDate: 2019/7/16 23:41<br>
+   *
+   * @return void
+   * @throws Exception
+   * @category
+   * @author jackie.scl
+   */
+  public static void flyweightPatternsTest() {
+    System.out.println("享元对象初始化 start");
+    FlyweightFactory flyweightFactory = new FlyweightFactory();
+    System.out.println("享元对象初始化 end\n");
+
+    System.out.println("获取享元对象 start");
+    // 获取具体享元对象A
+    Flyweight concreteFlyweightA = flyweightFactory.getFlyweight("concreteFlyweightA");
+    // 获取具体享元对象B
+    Flyweight concreteFlyweightB = flyweightFactory.getFlyweight("concreteFlyweightB");
+    // 获取具体享元对象C
+    Flyweight concreteFlyweightC = flyweightFactory.getFlyweight("concreteFlyweightC");
+    System.out.println("获取享元对象 end\n");
+
+    System.out.println("执行享元对象方法 start");
+    concreteFlyweightA.operation(new UnsharedConcreteFlyweight("concreteFlyweightA"));
+    concreteFlyweightB.operation(new UnsharedConcreteFlyweight("concreteFlyweightB"));
+    System.out.println("执行享元对象方法 end");
   }
 
   /**
