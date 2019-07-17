@@ -18,6 +18,9 @@ import com.design.patterns.bulider.builder.AbstractBuilder;
 import com.design.patterns.bulider.builder.ConcreteBuilder;
 import com.design.patterns.bulider.director.Director;
 import com.design.patterns.bulider.product.Product;
+import com.design.patterns.composite.component.AbstractComponent;
+import com.design.patterns.composite.component.BranchComponent;
+import com.design.patterns.composite.component.LeftComponent;
 import com.design.patterns.decorator.service.ComponentService;
 import com.design.patterns.decorator.service.serviceImpl.ConcreteComponentServiceImpl;
 import com.design.patterns.decorator.service.serviceImpl.ConcreteDecoratorAServiceImpl;
@@ -105,6 +108,10 @@ public class Main {
     System.out.println("----------------- 享元模式实现样例 start -----------------");
     flyweightPatternsTest();
     System.out.println("----------------- 享元模式实现样例 end -----------------\n");
+
+    System.out.println("----------------- 组合模式实现样例 start -----------------");
+    compositePatternsTest();
+    System.out.println("----------------- 组合模式实现样例 end -----------------\n");
 
     System.out.println("----------------- 模板方法模式实现样例 start -----------------");
     templateMethodPatternsTest();
@@ -391,6 +398,38 @@ public class Main {
     concreteFlyweightA.operation(new UnsharedConcreteFlyweight("concreteFlyweightA"));
     concreteFlyweightB.operation(new UnsharedConcreteFlyweight("concreteFlyweightB"));
     System.out.println("执行享元对象方法 end");
+  }
+
+  /**
+   * Title: 组合模式测试<br>
+   * Description: compositePatternsTest<br>
+   * CreateDate: 2019/7/17 18:48<br>
+   *
+   * @category @author jackie.scl
+   * @return void
+   * @exception Exception
+   */
+  public static void compositePatternsTest() {
+    // 创建树枝A
+    AbstractComponent branchComponentA = new BranchComponent();
+    // 创建树枝B
+    AbstractComponent branchComponentB = new BranchComponent();
+    // 创建树叶1
+    AbstractComponent leaf1 = new LeftComponent("1");
+    // 创建树叶2
+    AbstractComponent leaf2 = new LeftComponent("2");
+    // 创建树叶3
+    AbstractComponent leaf3 = new LeftComponent("3");
+    // 树枝A添加树叶1，并添加树枝B为子树枝
+    branchComponentA.add(leaf1);
+    branchComponentA.add(branchComponentB);
+
+    // 树枝A添加树叶2，树叶3
+    branchComponentB.add(leaf2);
+    branchComponentB.add(leaf3);
+
+    // 调用树枝A operation
+    branchComponentA.operation();
   }
 
   /**
