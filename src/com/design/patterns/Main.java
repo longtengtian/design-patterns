@@ -57,6 +57,7 @@ import com.design.patterns.simplefactory.service.OperationService;
 import com.design.patterns.singleton.HungrySingleton;
 import com.design.patterns.singleton.LazySingleton;
 import com.design.patterns.singleton.Singleton;
+import com.design.patterns.state.Context;
 import com.design.patterns.strategy.StrategyFactory;
 import com.design.patterns.strategy.service.serviceImpl.ConcreteStrategyA;
 import com.design.patterns.strategy.service.serviceImpl.ConcreteStrategyB;
@@ -135,6 +136,10 @@ public class Main {
     System.out.println("----------------- 责任链模式实现样例 start -----------------");
     responsibilityChainPatternsTest();
     System.out.println("----------------- 责任链模式实现样例 end -----------------\n");
+
+    System.out.println("----------------- 状态模式实现样例 start -----------------");
+    statePatternsTest();
+    System.out.println("----------------- 状态模式实现样例 end -----------------\n");
 
     System.out.println("----------------- 观察者模式实现样例 start -----------------");
     observerPatternsTest();
@@ -537,6 +542,23 @@ public class Main {
     System.out.println("请求chooseC处理 start");
     concreteHandlerA.handlerRequest("chooseC");
     System.out.println("请求chooseC处理 end");
+  }
+
+  /**
+   * Title: 状态模式测试<br>
+   * Description: statePatternsTest<br>
+   * CreateDate: 2019/7/17 20:13<br>
+   *
+   * @category @author jackie.scl
+   * @return void
+   * @exception Exception
+   */
+  public static void statePatternsTest() {
+    Context context = new Context();
+    context.Handle();
+    context.Handle();
+    context.Handle();
+    context.Handle();
   }
 
   /**
