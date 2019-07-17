@@ -39,6 +39,11 @@ import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryBSer
 import com.design.patterns.flyweight.UnsharedConcreteFlyweight;
 import com.design.patterns.flyweight.abstraction.Flyweight;
 import com.design.patterns.flyweight.factory.FlyweightFactory;
+import com.design.patterns.mediator.colleague.abstraction.AbstractColleague;
+import com.design.patterns.mediator.colleague.implementor.ConcreteColleagueA;
+import com.design.patterns.mediator.colleague.implementor.ConcreteColleagueB;
+import com.design.patterns.mediator.mediator.abstraction.AbstractMediator;
+import com.design.patterns.mediator.mediator.implementor.ConcreteMediator;
 import com.design.patterns.observer.service.Observer;
 import com.design.patterns.observer.service.Subject;
 import com.design.patterns.observer.service.serviceImpl.ConcreteObserverA;
@@ -144,6 +149,10 @@ public class Main {
     System.out.println("----------------- 观察者模式实现样例 start -----------------");
     observerPatternsTest();
     System.out.println("----------------- 观察者模式实现样例 end -----------------\n");
+
+    System.out.println("----------------- 中介者模式实现样例 start -----------------");
+    mediatorPatternsTest();
+    System.out.println("----------------- 中介者模式实现样例 end -----------------\n");
   }
 
   /**
@@ -581,6 +590,32 @@ public class Main {
     subject.addObserver(observerB);
     // 通知目标添加了的观察者
     subject.notifyObserver();
+  }
+
+  /**
+   * Title: 中介者模式测试<br>
+   * Description: mediatorPatternsTest<br>
+   * CreateDate: 2019/7/17 21:16<br>
+   *
+   * @category @author jackie.scl
+   * @return void
+   * @exception Exception
+   */
+  public static void mediatorPatternsTest() {
+    AbstractMediator concreteMediator = new ConcreteMediator();
+    AbstractColleague concreteColleagueA = new ConcreteColleagueA();
+    AbstractColleague concreteColleagueB = new ConcreteColleagueB();
+    // 具体中介者注册具体同事A、具体同事B的信息
+    concreteMediator.register(concreteColleagueA);
+    concreteMediator.register(concreteColleagueB);
+
+    System.out.println("具体同事A请求 start");
+    concreteColleagueA.send();
+    System.out.println("具体同事A请求 end\n");
+
+    System.out.println("具体同事B请求 start");
+    concreteColleagueB.send();
+    System.out.println("具体同事B请求 end");
   }
 
   /**
