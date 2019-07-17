@@ -18,6 +18,10 @@ import com.design.patterns.bulider.builder.AbstractBuilder;
 import com.design.patterns.bulider.builder.ConcreteBuilder;
 import com.design.patterns.bulider.director.Director;
 import com.design.patterns.bulider.product.Product;
+import com.design.patterns.command.abstraction.AbstractCommand;
+import com.design.patterns.command.implementor.ConcreteCommandA;
+import com.design.patterns.command.implementor.ConcreteCommandB;
+import com.design.patterns.command.invoker.Invoker;
 import com.design.patterns.composite.component.AbstractComponent;
 import com.design.patterns.composite.component.BranchComponent;
 import com.design.patterns.composite.component.LeftComponent;
@@ -120,6 +124,10 @@ public class Main {
     System.out.println("----------------- 策略模式实现样例 start -----------------");
     strategyPatternsTest();
     System.out.println("----------------- 策略模式实现样例 end -----------------\n");
+
+    System.out.println("----------------- 命令模式实现样例 start -----------------");
+    commandPatternsTest();
+    System.out.println("----------------- 命令模式实现样例 end -----------------\n");
 
     System.out.println("----------------- 观察者模式实现样例 start -----------------");
     observerPatternsTest();
@@ -467,6 +475,33 @@ public class Main {
     strategyFactory.strategyMethod("concreteStrategyB");
     // 调用不存在策略
     // strategyFactory.strategyMethod("concreteStrategy");
+  }
+
+  /**
+   * Title: 命令模式测试<br>
+   * Description: commandPatternsTest<br>
+   * CreateDate: 2019/7/17 19:04<br>
+   *
+   * @category @author jackie.scl
+   * @return void
+   * @exception Exception
+   */
+  public static void commandPatternsTest() {
+    AbstractCommand concreteCommandA = new ConcreteCommandA();
+    AbstractCommand concreteCommandB = new ConcreteCommandB();
+    // 创建具体命令A的调用者
+    Invoker invokerA = new Invoker(concreteCommandA);
+    // 创建具体命令B的调用者
+    Invoker invokerB = new Invoker(concreteCommandB);
+
+    System.out.println("调用者请求具体命令A start");
+    invokerA.call();
+    System.out.println("调用者请求具体命令A end\n");
+
+    System.out.println("调用者请求具体命令B start");
+    invokerB.call();
+    System.out.println("调用者请求具体命令A end");
+
   }
 
   /**
