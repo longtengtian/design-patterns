@@ -1,5 +1,9 @@
 package com.design.patterns;
 
+import java.lang.reflect.InvocationHandler;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
 import com.design.patterns.abstractfactory.factory.AbstractFactory;
 import com.design.patterns.abstractfactory.factory.ConcreteFactoryA;
 import com.design.patterns.abstractfactory.factory.ConcreteFactoryB;
@@ -45,6 +49,9 @@ import com.design.patterns.proxy.DynamicProxy;
 import com.design.patterns.proxy.service.SubjectService;
 import com.design.patterns.proxy.service.serviceImpl.ProxySubjectServiceImpl;
 import com.design.patterns.proxy.service.serviceImpl.RealSubjectServiceImpl;
+import com.design.patterns.responsibilitychain.abstraction.AbstractHandler;
+import com.design.patterns.responsibilitychain.implementor.ConcreteHandlerA;
+import com.design.patterns.responsibilitychain.implementor.ConcreteHandlerB;
 import com.design.patterns.simplefactory.OperationFactory;
 import com.design.patterns.simplefactory.service.OperationService;
 import com.design.patterns.singleton.HungrySingleton;
@@ -55,10 +62,6 @@ import com.design.patterns.strategy.service.serviceImpl.ConcreteStrategyA;
 import com.design.patterns.strategy.service.serviceImpl.ConcreteStrategyB;
 import com.design.patterns.templatemethod.HookAbstractClass;
 import com.design.patterns.templatemethod.HookConcreteClass;
-
-import java.lang.reflect.InvocationHandler;
-import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class Main {
 
@@ -128,6 +131,10 @@ public class Main {
     System.out.println("----------------- 命令模式实现样例 start -----------------");
     commandPatternsTest();
     System.out.println("----------------- 命令模式实现样例 end -----------------\n");
+
+    System.out.println("----------------- 责任链模式实现样例 start -----------------");
+    responsibilityChainPatternsTest();
+    System.out.println("----------------- 责任链模式实现样例 end -----------------\n");
 
     System.out.println("----------------- 观察者模式实现样例 start -----------------");
     observerPatternsTest();
@@ -502,6 +509,34 @@ public class Main {
     invokerB.call();
     System.out.println("调用者请求具体命令A end");
 
+  }
+
+  /**
+   * Title: 责任链模式测试<br>
+   * Description: responsibilityChainPatternsTest<br>
+   * CreateDate: 2019/7/17 19:09<br>
+   *
+   * @category @author jackie.scl
+   * @return void
+   * @exception Exception
+   */
+  public static void responsibilityChainPatternsTest() {
+    AbstractHandler concreteHandlerA = new ConcreteHandlerA();
+    AbstractHandler concreteHandlerB = new ConcreteHandlerB();
+    // 形成concreteHandlerA->concreteHandlerB责任链
+    concreteHandlerA.setNextHandler(concreteHandlerB);
+
+    System.out.println("请求chooseA处理 start");
+    concreteHandlerA.handlerRequest("chooseA");
+    System.out.println("请求chooseA处理 end\n");
+
+    System.out.println("请求chooseB处理 start");
+    concreteHandlerA.handlerRequest("chooseB");
+    System.out.println("请求chooseB处理 end\n");
+
+    System.out.println("请求chooseC处理 start");
+    concreteHandlerA.handlerRequest("chooseC");
+    System.out.println("请求chooseC处理 end");
   }
 
   /**
