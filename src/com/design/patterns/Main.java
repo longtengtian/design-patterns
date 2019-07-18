@@ -42,7 +42,6 @@ import com.design.patterns.flyweight.factory.FlyweightFactory;
 import com.design.patterns.iterator.aggregate.abstraction.AbstractAggregate;
 import com.design.patterns.iterator.aggregate.implementor.ConcreteAggregate;
 import com.design.patterns.iterator.iterator.abstraction.AbstractIterator;
-import com.design.patterns.iterator.iterator.implementor.ConcreteIterator;
 import com.design.patterns.mediator.colleague.abstraction.AbstractColleague;
 import com.design.patterns.mediator.colleague.implementor.ConcreteColleagueA;
 import com.design.patterns.mediator.colleague.implementor.ConcreteColleagueB;
@@ -72,6 +71,13 @@ import com.design.patterns.strategy.service.serviceImpl.ConcreteStrategyA;
 import com.design.patterns.strategy.service.serviceImpl.ConcreteStrategyB;
 import com.design.patterns.templatemethod.HookAbstractClass;
 import com.design.patterns.templatemethod.HookConcreteClass;
+import com.design.patterns.visitor.ObjectStructure;
+import com.design.patterns.visitor.element.abstraction.AbstractElement;
+import com.design.patterns.visitor.element.implementor.ConcreteElementA;
+import com.design.patterns.visitor.element.implementor.ConcreteElementB;
+import com.design.patterns.visitor.visitor.abstraction.AbstractVisitor;
+import com.design.patterns.visitor.visitor.implementor.ConcreteVisitorA;
+import com.design.patterns.visitor.visitor.implementor.ConcreteVisitorB;
 
 public class Main {
 
@@ -161,6 +167,11 @@ public class Main {
     System.out.println("----------------- 迭代器模式实现样例 start -----------------");
     iteratorPatternsTest();
     System.out.println("----------------- 迭代器模式实现样例 end -----------------\n");
+
+    System.out.println("----------------- 访问者模式实现样例 start -----------------");
+    visitorPatternsTest();
+    System.out.println("----------------- 访问者模式实现样例 end -----------------\n");
+
   }
 
   /**
@@ -649,6 +660,37 @@ public class Main {
     Object ob = iterator.first();
     System.out.println("\nFirst：" + ob.toString());
 
+  }
+
+  /**
+   * Title: 访问者模式测试<br>
+   * Description: visitorPatternsTest<br>
+   * CreateDate: 2019/7/18 18:44<br>
+   *
+   * @category 访问者模式测试
+   * @author jackie.scl
+   * @return void
+   * @exception Exception
+   */
+  public static void visitorPatternsTest() {
+    ObjectStructure objectStructure = new ObjectStructure();
+    AbstractElement concreteElementA = new ConcreteElementA();
+    AbstractElement concreteElementB = new ConcreteElementB();
+    AbstractVisitor concreteVisitorA = new ConcreteVisitorA();
+    AbstractVisitor concreteVisitorB = new ConcreteVisitorB();
+
+    // 对象结构添加具体元素
+    objectStructure.add(concreteElementA);
+    objectStructure.add(concreteElementB);
+
+    // 对象结构接受具体访问者访问
+    System.out.println("具体访问者A访问 start");
+    objectStructure.accept(concreteVisitorA);
+    System.out.println("具体访问者A访问 end\n");
+
+    System.out.println("具体访问者B访问 start");
+    objectStructure.accept(concreteVisitorB);
+    System.out.println("具体访问者B访问 end");
   }
 
   /**
