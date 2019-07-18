@@ -39,6 +39,10 @@ import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryBSer
 import com.design.patterns.flyweight.UnsharedConcreteFlyweight;
 import com.design.patterns.flyweight.abstraction.Flyweight;
 import com.design.patterns.flyweight.factory.FlyweightFactory;
+import com.design.patterns.iterator.aggregate.abstraction.AbstractAggregate;
+import com.design.patterns.iterator.aggregate.implementor.ConcreteAggregate;
+import com.design.patterns.iterator.iterator.abstraction.AbstractIterator;
+import com.design.patterns.iterator.iterator.implementor.ConcreteIterator;
 import com.design.patterns.mediator.colleague.abstraction.AbstractColleague;
 import com.design.patterns.mediator.colleague.implementor.ConcreteColleagueA;
 import com.design.patterns.mediator.colleague.implementor.ConcreteColleagueB;
@@ -153,6 +157,10 @@ public class Main {
     System.out.println("----------------- 中介者模式实现样例 start -----------------");
     mediatorPatternsTest();
     System.out.println("----------------- 中介者模式实现样例 end -----------------\n");
+
+    System.out.println("----------------- 迭代器模式实现样例 start -----------------");
+    iteratorPatternsTest();
+    System.out.println("----------------- 迭代器模式实现样例 end -----------------\n");
   }
 
   /**
@@ -616,6 +624,31 @@ public class Main {
     System.out.println("具体同事B请求 start");
     concreteColleagueB.send();
     System.out.println("具体同事B请求 end");
+  }
+
+  /**
+   * Title: 迭代器模式测试<br>
+   * Description: iteratorPatternsTest<br>
+   * CreateDate: 2019/7/18 10:01<br>
+   *
+   * @category @author jackie.scl
+   * @return void
+   * @exception Exception
+   */
+  public static void iteratorPatternsTest() {
+    AbstractAggregate concreteAggregate = new ConcreteAggregate();
+    concreteAggregate.add("韦博英语");
+    concreteAggregate.add("嗨英语");
+    concreteAggregate.add("开心豆");
+    System.out.print("聚合的内容有：");
+    AbstractIterator iterator = concreteAggregate.getIterator();
+    while (iterator.hasNext()) {
+      Object ob = iterator.next();
+      System.out.print(ob.toString() + "\t");
+    }
+    Object ob = iterator.first();
+    System.out.println("\nFirst：" + ob.toString());
+
   }
 
   /**
