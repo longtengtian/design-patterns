@@ -1,7 +1,7 @@
-package com.design.patterns.abstractfactory.factory;
+package com.design.patterns.abstractfactory.factory.abstraction;
 
-import com.design.patterns.abstractfactory.product.AbstractProductOne;
-import com.design.patterns.abstractfactory.product.AbstractProductTwo;
+import com.design.patterns.abstractfactory.product.abstraction.AbstractProductOne;
+import com.design.patterns.abstractfactory.product.abstraction.AbstractProductTwo;
 
 /**
  * Title: 抽象工厂<br>

@@ -1,4 +1,4 @@
-package com.design.patterns.abstractfactory.product;
+package com.design.patterns.abstractfactory.product.abstraction;
 
 /**
  * Title: 抽象产品B<br>

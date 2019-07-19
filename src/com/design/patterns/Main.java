@@ -4,9 +4,9 @@ import java.lang.reflect.InvocationHandler;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-import com.design.patterns.abstractfactory.factory.AbstractFactory;
-import com.design.patterns.abstractfactory.factory.ConcreteFactoryA;
-import com.design.patterns.abstractfactory.factory.ConcreteFactoryB;
+import com.design.patterns.abstractfactory.factory.abstraction.AbstractFactory;
+import com.design.patterns.abstractfactory.factory.implementor.ConcreteFactoryOne;
+import com.design.patterns.abstractfactory.factory.implementor.ConcreteFactoryTwo;
 import com.design.patterns.adapter.service.TwoWayAdapteeService;
 import com.design.patterns.adapter.service.TwoWayTargetService;
 import com.design.patterns.adapter.service.serviceImpl.AdapteeRealizeServiceImpl;
@@ -34,8 +34,8 @@ import com.design.patterns.decorator.service.serviceImpl.ConcreteComponentServic
 import com.design.patterns.decorator.service.serviceImpl.ConcreteDecoratorAServiceImpl;
 import com.design.patterns.decorator.service.serviceImpl.ConcreteDecoratorBServiceImpl;
 import com.design.patterns.facade.facade.Facade;
-import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryAServiceImpl;
-import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryBServiceImpl;
+import com.design.patterns.factorymethod.factory.implementor.ConcreteFactoryA;
+import com.design.patterns.factorymethod.factory.implementor.ConcreteFactoryB;
 import com.design.patterns.flyweight.UnsharedConcreteFlyweight;
 import com.design.patterns.flyweight.abstraction.Flyweight;
 import com.design.patterns.flyweight.factory.FlyweightFactory;
@@ -263,14 +263,14 @@ public class Main {
    * @author jackie.scl
    */
   public static void factoryMethodPatternsTest() {
-    ConcreteFactoryAServiceImpl concreteFactoryAServiceImpl = new ConcreteFactoryAServiceImpl();
+    ConcreteFactoryA concreteFactoryA = new ConcreteFactoryA();
     System.out.println("具体工厂A测试 start");
-    concreteFactoryAServiceImpl.newProduct().productInfo();
+    concreteFactoryA.newProduct().productInfo();
     System.out.println("具体工厂A测试 end\n");
 
-    ConcreteFactoryBServiceImpl concreteFactoryBServiceImpl = new ConcreteFactoryBServiceImpl();
+    ConcreteFactoryB concreteFactoryB = new ConcreteFactoryB();
     System.out.println("具体工厂B测试 start");
-    concreteFactoryBServiceImpl.newProduct().productInfo();
+    concreteFactoryB.newProduct().productInfo();
     System.out.println("具体工厂B测试 end");
   }
 
@@ -285,13 +285,13 @@ public class Main {
    */
   public static void abstractFactoryPatternsTest() {
     System.out.println("具体工厂A产品 start");
-    AbstractFactory concreteFactoryA = new ConcreteFactoryA();
+    AbstractFactory concreteFactoryA = new ConcreteFactoryOne();
     concreteFactoryA.newProductA().show();
     concreteFactoryA.newProductB().test();
     System.out.println("具体工厂A产品 end\n");
 
     System.out.println("具体工厂B产品 start");
-    AbstractFactory concreteFactoryB = new ConcreteFactoryB();
+    AbstractFactory concreteFactoryB = new ConcreteFactoryTwo();
     concreteFactoryB.newProductA().show();
     concreteFactoryB.newProductB().test();
     System.out.println("具体工厂B产品 end");
