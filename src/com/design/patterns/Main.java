@@ -39,6 +39,7 @@ import com.design.patterns.factorymethod.service.serviceImpl.ConcreteFactoryBSer
 import com.design.patterns.flyweight.UnsharedConcreteFlyweight;
 import com.design.patterns.flyweight.abstraction.Flyweight;
 import com.design.patterns.flyweight.factory.FlyweightFactory;
+import com.design.patterns.interpreter.InterpreterContext;
 import com.design.patterns.iterator.aggregate.abstraction.AbstractAggregate;
 import com.design.patterns.iterator.aggregate.implementor.ConcreteAggregate;
 import com.design.patterns.iterator.iterator.abstraction.AbstractIterator;
@@ -178,6 +179,10 @@ public class Main {
     System.out.println("----------------- 备忘录模式实现样例 start -----------------");
     mementoPatternsTest();
     System.out.println("----------------- 备忘录模式实现样例 end -----------------\n");
+
+    System.out.println("----------------- 解释器模式实现样例 start -----------------");
+    interpreterPatternsTest();
+    System.out.println("----------------- 解释器模式实现样例 end -----------------\n");
 
   }
 
@@ -728,6 +733,24 @@ public class Main {
     // 发起人恢复到保存的备忘录状态
     originator.restoreMemento(caretaker.getMemento());
     System.out.println("恢复状态：" + originator.getState());
+  }
+
+  /**
+   * Title: 解释器模式测试<br>
+   * Description: interpreterPatternsTest<br>
+   * CreateDate: 2019/7/19 14:03<br>
+   *
+   * @category @author jackie.scl
+   * @return void
+   * @exception Exception
+   */
+  public static void interpreterPatternsTest() {
+    InterpreterContext bus = new InterpreterContext();
+    bus.freeRide("韶关的老人");
+    bus.freeRide("韶关的年轻人");
+    bus.freeRide("广州的妇女");
+    bus.freeRide("广州的儿童");
+    bus.freeRide("山东的儿童");
   }
 
   /**
