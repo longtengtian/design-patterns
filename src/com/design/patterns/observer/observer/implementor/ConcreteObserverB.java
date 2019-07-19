@@ -1,6 +1,6 @@
-package com.design.patterns.observer.service.serviceImpl;
+package com.design.patterns.observer.observer.implementor;
 
-import com.design.patterns.observer.service.Observer;
+import com.design.patterns.observer.observer.abstraction.AbstractObserver;
 
 /**
  * Title: 具体观察者B<br>
@@ -10,7 +10,7 @@ import com.design.patterns.observer.service.Observer;
  *
  * @author jackie.scl
  */
-public class ConcreteObserverB implements Observer {
+public class ConcreteObserverB implements AbstractObserver {
   @Override
   public void response() {
     System.out.println("具体观察者B收到变更通知，对应变更！");

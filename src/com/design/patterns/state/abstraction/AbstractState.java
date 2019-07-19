@@ -1,6 +1,6 @@
 package com.design.patterns.state.abstraction;
 
-import com.design.patterns.state.Context;
+import com.design.patterns.state.StateContext;
 
 /**
  * Title: 抽象状态<br>
@@ -11,5 +11,5 @@ import com.design.patterns.state.Context;
  * @author jackie.scl
  */
 public abstract class AbstractState {
-  public abstract void Handle(Context context);
+  public abstract void Handle(StateContext stateContext);
 }

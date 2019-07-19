@@ -51,14 +51,13 @@ import com.design.patterns.mediator.mediator.implementor.ConcreteMediator;
 import com.design.patterns.memento.Caretaker;
 import com.design.patterns.memento.Memento;
 import com.design.patterns.memento.Originator;
-import com.design.patterns.observer.service.Observer;
-import com.design.patterns.observer.service.Subject;
-import com.design.patterns.observer.service.serviceImpl.ConcreteObserverA;
-import com.design.patterns.observer.service.serviceImpl.ConcreteObserverB;
-import com.design.patterns.observer.service.serviceImpl.ConcreteSubject;
+import com.design.patterns.observer.observer.abstraction.AbstractObserver;
+import com.design.patterns.observer.subject.abstraction.AbstractSubject;
+import com.design.patterns.observer.observer.implementor.ConcreteObserverA;
+import com.design.patterns.observer.observer.implementor.ConcreteObserverB;
+import com.design.patterns.observer.subject.implementor.ConcreteSubject;
 import com.design.patterns.prototype.ProtoTypeCitation;
 import com.design.patterns.proxy.DynamicProxy;
-import com.design.patterns.proxy.subject.abstraction.AbstractSubject;
 import com.design.patterns.proxy.subject.implementor.ProxySubject;
 import com.design.patterns.proxy.subject.implementor.RealSubject;
 import com.design.patterns.responsibilitychain.abstraction.AbstractHandler;
@@ -69,7 +68,7 @@ import com.design.patterns.simplefactory.service.OperationService;
 import com.design.patterns.singleton.HungrySingleton;
 import com.design.patterns.singleton.LazySingleton;
 import com.design.patterns.singleton.Singleton;
-import com.design.patterns.state.Context;
+import com.design.patterns.state.StateContext;
 import com.design.patterns.strategy.StrategyContext;
 import com.design.patterns.strategy.implementor.ConcreteStrategyA;
 import com.design.patterns.strategy.implementor.ConcreteStrategyB;
@@ -323,12 +322,14 @@ public class Main {
    * @category @author jackie.scl
    */
   public static void proxyPatternsTest() {
-    AbstractSubject realSubjectService = new RealSubject();
+    com.design.patterns.proxy.subject.abstraction.AbstractSubject realSubjectService =
+        new RealSubject();
     InvocationHandler handler = new ProxySubject(realSubjectService);
 
     ClassLoader classLoader = realSubjectService.getClass().getClassLoader();
     Class<?>[] interfaces = realSubjectService.getClass().getInterfaces();
-    AbstractSubject proxySubectService = DynamicProxy.newProxyInstance(classLoader, interfaces,
+    com.design.patterns.proxy.subject.abstraction.AbstractSubject proxySubectService = DynamicProxy
+        .newProxyInstance(classLoader, interfaces,
         handler);
     // 通过代理访问真实对象方法
     proxySubectService.request();
@@ -595,11 +596,11 @@ public class Main {
    * @exception Exception
    */
   public static void statePatternsTest() {
-    Context context = new Context();
-    context.Handle();
-    context.Handle();
-    context.Handle();
-    context.Handle();
+    StateContext stateContext = new StateContext();
+    stateContext.Handle();
+    stateContext.Handle();
+    stateContext.Handle();
+    stateContext.Handle();
   }
 
   /**
@@ -613,15 +614,15 @@ public class Main {
    */
   public static void observerPatternsTest() {
     // 目标获取
-    Subject subject = new ConcreteSubject();
+    AbstractSubject abstractSubject = new ConcreteSubject();
     // 观察者获取
-    Observer observerA = new ConcreteObserverA();
-    Observer observerB = new ConcreteObserverB();
+    AbstractObserver abstractObserverA = new ConcreteObserverA();
+    AbstractObserver abstractObserverB = new ConcreteObserverB();
     // 观察者新增
-    subject.addObserver(observerA);
-    subject.addObserver(observerB);
+    abstractSubject.addObserver(abstractObserverA);
+    abstractSubject.addObserver(abstractObserverB);
     // 通知目标添加了的观察者
-    subject.notifyObserver();
+    abstractSubject.notifyObserver();
   }
 
   /**

@@ -1,18 +1,20 @@
-package com.design.patterns.observer.service;
+package com.design.patterns.observer.subject.abstraction;
+
+import com.design.patterns.observer.observer.abstraction.AbstractObserver;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Title: 抽象目标<br>
- * Description: Subject<br>
+ * Description: AbstractSubject<br>
  * Company:韦博英语在线教育部</br>
  * CreateDate:2019年07月04日 18:51
  *
  * @author jackie.scl
  */
-public abstract class Subject {
-  protected List<Observer> observerList = new ArrayList<Observer>();
+public abstract class AbstractSubject {
+  protected List<AbstractObserver> abstractObserverList = new ArrayList<AbstractObserver>();
 
   /**
    * Title: 增加观察者<br>
@@ -20,12 +22,12 @@ public abstract class Subject {
    * CreateDate: 2019/7/4 18:53<br>
    *
    * @category @author jackie.scl
-   * @param observer
+   * @param abstractObserver
    * @return void
    * @exception Exception
    */
-  public void addObserver(Observer observer) {
-    observerList.add(observer);
+  public void addObserver(AbstractObserver abstractObserver) {
+    abstractObserverList.add(abstractObserver);
   }
 
   /**
@@ -34,12 +36,12 @@ public abstract class Subject {
    * CreateDate: 2019/7/4 18:54<br>
    *
    * @category @author jackie.scl
-   * @param observer
+   * @param abstractObserver
    * @return void
    * @exception Exception
    */
-  public void removeObserver(Observer observer) {
-    observerList.remove(observer);
+  public void removeObserver(AbstractObserver abstractObserver) {
+    abstractObserverList.remove(abstractObserver);
   }
 
   public abstract void notifyObserver(); // 触发通知观察者的方法

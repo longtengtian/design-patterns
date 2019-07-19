@@ -1,6 +1,6 @@
 package com.design.patterns.state.implementor;
 
-import com.design.patterns.state.Context;
+import com.design.patterns.state.StateContext;
 import com.design.patterns.state.abstraction.AbstractState;
 
 /**
@@ -13,9 +13,9 @@ import com.design.patterns.state.abstraction.AbstractState;
  */
 public class ConcreteStateC extends AbstractState {
   @Override
-  public void Handle(Context context) {
+  public void Handle(StateContext stateContext) {
     System.out.println("当前状态：状态C");
-    context.setAbstractState(new ConcreteStateA());
+    stateContext.setAbstractState(new ConcreteStateA());
     System.out.println("请求处理后变更状态为：状态A\n");
   }
 }
