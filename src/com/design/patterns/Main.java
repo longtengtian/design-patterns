@@ -70,9 +70,9 @@ import com.design.patterns.singleton.HungrySingleton;
 import com.design.patterns.singleton.LazySingleton;
 import com.design.patterns.singleton.Singleton;
 import com.design.patterns.state.Context;
-import com.design.patterns.strategy.StrategyFactory;
-import com.design.patterns.strategy.service.serviceImpl.ConcreteStrategyA;
-import com.design.patterns.strategy.service.serviceImpl.ConcreteStrategyB;
+import com.design.patterns.strategy.StrategyContext;
+import com.design.patterns.strategy.implementor.ConcreteStrategyA;
+import com.design.patterns.strategy.implementor.ConcreteStrategyB;
 import com.design.patterns.templatemethod.HookAbstractClass;
 import com.design.patterns.templatemethod.HookConcreteClass;
 import com.design.patterns.visitor.ObjectStructure;
@@ -518,7 +518,7 @@ public class Main {
    * @category @author jackie.scl
    */
   public static void strategyPatternsTest() {
-    StrategyFactory strategyFactory = new StrategyFactory();
+    StrategyContext strategyFactory = new StrategyContext();
     // 初始化策略
     strategyFactory.put("concreteStrategyA", new ConcreteStrategyA());
     strategyFactory.put("concreteStrategyB", new ConcreteStrategyB());

@@ -1,6 +1,6 @@
-package com.design.patterns.strategy.service.serviceImpl;
+package com.design.patterns.strategy.implementor;
 
-import com.design.patterns.strategy.service.StrategyService;
+import com.design.patterns.strategy.abstraction.AbstractStrategy;
 
 /**
  * Title: 具体实现策略类B<br>
@@ -10,7 +10,7 @@ import com.design.patterns.strategy.service.StrategyService;
  *
  * @author jackie.scl
  */
-public class ConcreteStrategyB implements StrategyService {
+public class ConcreteStrategyB implements AbstractStrategy {
   @Override
   public void strategyMethod() {
     System.out.println("调用具体策略B的策略方法成功！");

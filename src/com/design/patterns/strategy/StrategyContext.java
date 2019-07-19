@@ -1,20 +1,20 @@
 package com.design.patterns.strategy;
 
-import com.design.patterns.strategy.service.StrategyService;
-
 import java.util.HashMap;
 import java.util.Map;
 
+import com.design.patterns.strategy.abstraction.AbstractStrategy;
+
 /**
- * Title: 策略工厂<br>
- * Description: StrategyFactory<br>
+ * Title: 策略环境<br>
+ * Description: StrategyContext<br>
  * Company:韦博英语在线教育部</br>
  * CreateDate:2019年06月26日 19:07
  *
  * @author jackie.scl
  */
-public class StrategyFactory {
-  private Map<String, StrategyService> strategyMap = new HashMap<String, StrategyService>();
+public class StrategyContext {
+  private Map<String, AbstractStrategy> strategyMap = new HashMap<String, AbstractStrategy>();
 
   /**
    * Title: 设置策略<br>
@@ -23,12 +23,12 @@ public class StrategyFactory {
    *
    * @category @author jackie.scl
    * @param key
-   * @param strategyService
+   * @param abstractStrategy
    * @return void
    * @exception Exception
    */
-  public void put(String key, StrategyService strategyService) {
-    strategyMap.put(key, strategyService);
+  public void put(String key, AbstractStrategy abstractStrategy) {
+    strategyMap.put(key, abstractStrategy);
   }
 
   /**
@@ -38,10 +38,10 @@ public class StrategyFactory {
    *
    * @category @author jackie.scl
    * @param key
-   * @return com.design.patterns.strategy.service.StrategyService
+   * @return com.design.patterns.strategy.abstraction.StrategyService
    * @exception Exception
    */
-  public StrategyService get(String key) {
+  public AbstractStrategy get(String key) {
     return strategyMap.get(key);
   }
 
