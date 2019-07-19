@@ -29,10 +29,10 @@ import com.design.patterns.command.invoker.Invoker;
 import com.design.patterns.composite.component.AbstractComponent;
 import com.design.patterns.composite.component.BranchComponent;
 import com.design.patterns.composite.component.LeftComponent;
-import com.design.patterns.decorator.service.ComponentService;
-import com.design.patterns.decorator.service.serviceImpl.ConcreteComponentServiceImpl;
-import com.design.patterns.decorator.service.serviceImpl.ConcreteDecoratorAServiceImpl;
-import com.design.patterns.decorator.service.serviceImpl.ConcreteDecoratorBServiceImpl;
+import com.design.patterns.decorator.component.implementor.ConcreteComponent;
+import com.design.patterns.decorator.decorator.abstraction.AbstractDecorator;
+import com.design.patterns.decorator.decorator.implementor.ConcreteDecoratorA;
+import com.design.patterns.decorator.decorator.implementor.ConcreteDecoratorB;
 import com.design.patterns.facade.facade.Facade;
 import com.design.patterns.factorymethod.factory.implementor.ConcreteFactoryA;
 import com.design.patterns.factorymethod.factory.implementor.ConcreteFactoryB;
@@ -402,18 +402,18 @@ public class Main {
    */
   public static void decoratorPatternsTest() {
     System.out.println("具体构件实现方法调用 start");
-    ComponentService componentService = new ConcreteComponentServiceImpl();
+    ConcreteComponent componentService = new ConcreteComponent();
     componentService.operation();
     System.out.println("具体构件实现方法调用 end\n");
 
     System.out.println("具体装饰A实现方法调用 start");
-    ComponentService decoratorAService = new ConcreteDecoratorAServiceImpl(componentService);
-    decoratorAService.operation();
+    AbstractDecorator decoratorA = new ConcreteDecoratorA(componentService);
+    decoratorA.operation();
     System.out.println("具体装饰A实现方法调用 end\n");
 
     System.out.println("具体装饰B实现方法调用 start");
-    ComponentService decoratorBService = new ConcreteDecoratorBServiceImpl(componentService);
-    decoratorBService.operation();
+    AbstractDecorator decoratorB = new ConcreteDecoratorB(componentService);
+    decoratorB.operation();
     System.out.println("具体装饰B实现方法调用 end");
   }
 
