@@ -58,9 +58,9 @@ import com.design.patterns.observer.service.serviceImpl.ConcreteObserverB;
 import com.design.patterns.observer.service.serviceImpl.ConcreteSubject;
 import com.design.patterns.prototype.ProtoTypeCitation;
 import com.design.patterns.proxy.DynamicProxy;
-import com.design.patterns.proxy.service.SubjectService;
-import com.design.patterns.proxy.service.serviceImpl.ProxySubjectServiceImpl;
-import com.design.patterns.proxy.service.serviceImpl.RealSubjectServiceImpl;
+import com.design.patterns.proxy.subject.abstraction.AbstractSubject;
+import com.design.patterns.proxy.subject.implementor.ProxySubject;
+import com.design.patterns.proxy.subject.implementor.RealSubject;
 import com.design.patterns.responsibilitychain.abstraction.AbstractHandler;
 import com.design.patterns.responsibilitychain.implementor.ConcreteHandlerA;
 import com.design.patterns.responsibilitychain.implementor.ConcreteHandlerB;
@@ -323,12 +323,12 @@ public class Main {
    * @category @author jackie.scl
    */
   public static void proxyPatternsTest() {
-    SubjectService realSubjectService = new RealSubjectServiceImpl();
-    InvocationHandler handler = new ProxySubjectServiceImpl(realSubjectService);
+    AbstractSubject realSubjectService = new RealSubject();
+    InvocationHandler handler = new ProxySubject(realSubjectService);
 
     ClassLoader classLoader = realSubjectService.getClass().getClassLoader();
     Class<?>[] interfaces = realSubjectService.getClass().getInterfaces();
-    SubjectService proxySubectService = DynamicProxy.newProxyInstance(classLoader, interfaces,
+    AbstractSubject proxySubectService = DynamicProxy.newProxyInstance(classLoader, interfaces,
         handler);
     // 通过代理访问真实对象方法
     proxySubectService.request();
