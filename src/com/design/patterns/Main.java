@@ -47,6 +47,9 @@ import com.design.patterns.mediator.colleague.implementor.ConcreteColleagueA;
 import com.design.patterns.mediator.colleague.implementor.ConcreteColleagueB;
 import com.design.patterns.mediator.mediator.abstraction.AbstractMediator;
 import com.design.patterns.mediator.mediator.implementor.ConcreteMediator;
+import com.design.patterns.memento.Caretaker;
+import com.design.patterns.memento.Memento;
+import com.design.patterns.memento.Originator;
 import com.design.patterns.observer.service.Observer;
 import com.design.patterns.observer.service.Subject;
 import com.design.patterns.observer.service.serviceImpl.ConcreteObserverA;
@@ -171,6 +174,10 @@ public class Main {
     System.out.println("----------------- 访问者模式实现样例 start -----------------");
     visitorPatternsTest();
     System.out.println("----------------- 访问者模式实现样例 end -----------------\n");
+
+    System.out.println("----------------- 备忘录模式实现样例 start -----------------");
+    mementoPatternsTest();
+    System.out.println("----------------- 备忘录模式实现样例 end -----------------\n");
 
   }
 
@@ -691,6 +698,36 @@ public class Main {
     System.out.println("具体访问者B访问 start");
     objectStructure.accept(concreteVisitorB);
     System.out.println("具体访问者B访问 end");
+  }
+
+  /**
+   * Title: 备忘录模式测试<br>
+   * Description: mementoPatternsTest<br>
+   * CreateDate: 2019/7/19 19:13<br>
+   *
+   * @category @author jackie.scl
+   * @return void
+   * @exception Exception
+   */
+  public static void mementoPatternsTest() {
+    // 新增管理者
+    Caretaker caretaker = new Caretaker();
+    // 新增发起人
+    Originator originator = new Originator();
+    // 创建备忘录stateOne
+    Memento memento = originator.createMemento("stateOne");
+    System.out.println("初始备忘录状态：" + memento.getState());
+
+    // 管理者保存备忘录
+    caretaker.setMemento(memento);
+
+    // 发起人变更状态
+    originator.setState("stateTwo");
+    System.out.println("变更状态：" + originator.getState());
+
+    // 发起人恢复到保存的备忘录状态
+    originator.restoreMemento(caretaker.getMemento());
+    System.out.println("恢复状态：" + originator.getState());
   }
 
   /**
