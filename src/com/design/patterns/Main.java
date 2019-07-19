@@ -7,11 +7,11 @@ import java.util.regex.Pattern;
 import com.design.patterns.abstractfactory.factory.abstraction.AbstractFactory;
 import com.design.patterns.abstractfactory.factory.implementor.ConcreteFactoryOne;
 import com.design.patterns.abstractfactory.factory.implementor.ConcreteFactoryTwo;
-import com.design.patterns.adapter.service.TwoWayAdapteeService;
-import com.design.patterns.adapter.service.TwoWayTargetService;
-import com.design.patterns.adapter.service.serviceImpl.AdapteeRealizeServiceImpl;
-import com.design.patterns.adapter.service.serviceImpl.TargetRealizeServiceImpl;
-import com.design.patterns.adapter.service.serviceImpl.TwoWayAdapterServiceImpl;
+import com.design.patterns.adapter.adaptee.abstraction.AbstractTwoWayAdaptee;
+import com.design.patterns.adapter.adaptee.implementor.AdapteeRealize;
+import com.design.patterns.adapter.adapter.TwoWayAdapter;
+import com.design.patterns.adapter.target.abstraction.AbstractTwoWayTarget;
+import com.design.patterns.adapter.target.implementor.TargetRealize;
 import com.design.patterns.bridge.abstraction.Bag;
 import com.design.patterns.bridge.abstraction.HandBag;
 import com.design.patterns.bridge.abstraction.Wallet;
@@ -346,14 +346,15 @@ public class Main {
    */
   public static void adapterPatternsTest() {
     System.out.println("目标通过双向适配器访问适配者 start");
-    TwoWayAdapteeService adapteeService = new AdapteeRealizeServiceImpl();
-    TwoWayTargetService targetService = new TwoWayAdapterServiceImpl(adapteeService);
-    targetService.request();
+    AbstractTwoWayAdaptee adaptee = new AdapteeRealize();
+    AbstractTwoWayTarget target = new TwoWayAdapter(adaptee);
+    target.request();
     System.out.println("目标通过双向适配器访问适配者 end\n");
+
     System.out.println("适配者通过双向适配器访问目标 start");
-    targetService = new TargetRealizeServiceImpl();
-    adapteeService = new TwoWayAdapterServiceImpl(targetService);
-    adapteeService.specificRequest();
+    target = new TargetRealize();
+    adaptee = new TwoWayAdapter(target);
+    adaptee.specificRequest();
     System.out.println("适配者通过双向适配器访问目标 end");
   }
 
